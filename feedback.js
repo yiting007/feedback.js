@@ -867,7 +867,17 @@ window.Feedback.XHR.prototype.send = function( data, callback ) {
             callback( (xhr.status === 200) );
         }
     };
-    
+    //yiting added: motoinsight 274
+    var reg = /\s*\/\s*/;
+    var tmp = window.location.href.split(reg);
+    var reportID = tmp[tmp.length-1].split('?')[0];
+    console.log('xxxxxxxxxxxxxx In feedback.js: reportID=' + reportID);
+    var n = this.url.indexOf('reportID');
+    if( n != -1 ) {
+        this.url = this.url.substring(0, n-1);
+    }
+    this.url += ('&reportID='+reportID);
+  
     xhr.open( "POST", this.url, true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send( "data=" + encodeURIComponent( window.JSON.stringify( data ) ) );
