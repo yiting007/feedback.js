@@ -878,7 +878,7 @@ window.Feedback.XHR.prototype.send = function( data, callback ) {
     }
     this.url += ('&reportID=' + reportID);
     // also pass the url motoinsight-70
-    this.url += ('&link=' + window.location.href);
+    this.url += ('&link=' + window.location.href.split('#')[1]);
   
     xhr.open( "POST", this.url, true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
